@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Jfoperadores extends JFrame {
 
@@ -40,7 +43,14 @@ public class Jfoperadores extends JFrame {
 	private JLabel lbltelefono;
 	private JLabel lblidvehiculo;
 	private JButton btnguardar;
-	private JButton btnlimpiar;
+	private JButton btndelete;
+	
+	Operadores cr = new Operadores();
+	private JButton btnLimpiar;
+	private JLabel lblIdoperadores;
+	private JTextField txtidoperadodres;
+	private JButton btnConsultar;
+	private JButton btnActualizar;
 
 	/**
 	 * Launch the application.
@@ -63,7 +73,7 @@ public class Jfoperadores extends JFrame {
 	 */
 	public Jfoperadores() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 555, 403);
+		setBounds(100, 100, 671, 445);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -159,28 +169,93 @@ public class Jfoperadores extends JFrame {
 		lblidvehiculo.setBounds(293, 248, 86, 31);
 		contentPane.add(lblidvehiculo);
 		
-		btnguardar = new JButton("Guardar");
+		btnguardar = new JButton("");
+		btnguardar.setIcon(new ImageIcon("C:\\Users\\lizyi\\Downloads\\285657_floppy_guardar_save_icon (1).png"));
 		btnguardar.setBackground(UIManager.getColor("Button.light"));
 		btnguardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-		    Operadores cr = new Operadores();
+		    
 		    cr.create(Integer.parseInt(txttipodocumento.getText()), Integer.parseInt(txtdocumento.getText()),
 		    		txtnombres.getText(), txtapellidos.getText(), txtdireccion.getText(),
 		    		txtcorreo.getText(), txttelefono.getText(), Integer.parseInt(txtidvehiculos.getText()));
 			}
 		});
 		btnguardar.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnguardar.setBounds(86, 307, 122, 31);
+		btnguardar.setBounds(556, 115, 86, 65);
 		contentPane.add(btnguardar);
 		
-		btnlimpiar = new JButton("Limpiar");
-		btnlimpiar.setBackground(UIManager.getColor("Button.light"));
-		btnlimpiar.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnlimpiar.setBounds(263, 307, 116, 31);
-		contentPane.add(btnlimpiar);
+		btndelete = new JButton("");
+		btndelete.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				cr.delete(Integer.parseInt(txtidoperadodres.getText()));
+			}
+		});
+		btndelete.setIcon(new ImageIcon("C:\\Users\\lizyi\\Downloads\\1814090_delete_garbage_trash_icon.png"));
+		btndelete.setBackground(UIManager.getColor("Button.light"));
+		btndelete.setFont(new Font("Arial", Font.PLAIN, 14));
+		btndelete.setBounds(556, 34, 86, 57);
+		contentPane.add(btndelete);
 		
-		btnlimpiar.addActionListener(e -> clearFields());
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnLimpiar.setBounds(302, 309, 116, 36);
+		contentPane.add(btnLimpiar);
+		
+		lblIdoperadores = new JLabel("idoperadores");
+		lblIdoperadores.setBackground(SystemColor.inactiveCaption);
+		lblIdoperadores.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblIdoperadores.setBounds(0, 312, 86, 31);
+		contentPane.add(lblIdoperadores);
+		
+		txtidoperadodres = new JTextField();
+		txtidoperadodres.setText("");
+		txtidoperadodres.setColumns(10);
+		txtidoperadodres.setBackground(SystemColor.inactiveCaption);
+		txtidoperadodres.setBounds(142, 313, 116, 31);
+		contentPane.add(txtidoperadodres);
+		
+		btnConsultar = new JButton("");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnConsultar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				cr.read(Integer.parseInt(txtidoperadodres.getText()), txttipodocumento, txtdocumento, txtnombres, txtapellidos, txtdireccion, txtcorreo, txttelefono, txtidvehiculos);
+				
+				
+			}
+		});
+		btnConsultar.setIcon(new ImageIcon("C:\\Users\\lizyi\\Downloads\\6071808_folder_progress_task_update_update task progress_icon.png"));
+		btnConsultar.setBounds(556, 203, 89, 76);
+		contentPane.add(btnConsultar);
+		
+		btnActualizar = new JButton("");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				cr.Update(Integer.parseInt(txtidoperadodres.getText()), Integer.parseInt(txttipodocumento.getText()), Integer.parseInt(txtdocumento.getText()),
+						txtnombres.getText(), txtapellidos.getText(), txtdireccion.getText(), txtcorreo.getText(), txttelefono.getText(), Integer.parseInt(txtidvehiculos.getText()));
+				
+				
+			}
+		});
+		btnActualizar.setIcon(new ImageIcon("C:\\Users\\lizyi\\Downloads\\9104197_loading_refresh_reload_update_wait_icon.png"));
+		btnActualizar.setBounds(556, 310, 89, 52);
+		contentPane.add(btnActualizar);
+		
+		btndelete.addActionListener(e -> clearFields());
 		
 	}
 
