@@ -12,7 +12,7 @@ import Controller.Conexion;
 
 public class Clientes {
 	
-	//En esta ínea se esta llamando el objeto de la clase conector
+	//En esta línea se esta llamando el objeto de la clase conector
 	Conexion conector = new Conexion ();
 	
 	public int idclientes ;

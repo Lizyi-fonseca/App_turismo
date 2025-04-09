@@ -12,12 +12,14 @@ import View.JF_Principal;
 
 public class Accesso {
 
-	//declaro objeto conector 
+	
 	Conexion conector = new Conexion();
+	
 	public int documento;
 	public String contraseña;
 	public int getDocumento() {
-		return documento;
+	return documento;
+	
 	}
 	public void setDocumento(int documento) {
 		this.documento = documento;

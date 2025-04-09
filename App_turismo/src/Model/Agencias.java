@@ -98,11 +98,11 @@ public class Agencias {
             //Permite ejecutar la consulta de actualizacion
 			pst.executeUpdate();
 
-			// Mostrara un mensaje con un joptio...
+			
 			JOptionPane.showConfirmDialog(null, "Registro con exito");
 		} catch (SQLException e) {
 			
-	         //para imprimir el error en pantalla
+	         
 			System.out.println(e.getMessage());
 		}
 
@@ -115,7 +115,7 @@ public class Agencias {
 		Connection dbconnetion = null;
 		PreparedStatement pst = null;
 		
-      //Define la colsulta que ecuperara los datos de la tabla por medio de la condicion
+      //Define la colsulta que recuperara los datos de la tabla por medio de la condicion
 		String script = " SELECT * FROM tblagencias WHERE idagencias = ?";
 
 		try {
